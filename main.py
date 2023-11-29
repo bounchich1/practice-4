@@ -3,6 +3,7 @@ import datetime
 
 
 class NoSuchComman(Exception):
+    """the class inherits from the class Exception"""
     pass
 
 
