@@ -1,8 +1,9 @@
-"New cool python programm"
+"""New cool python programm"""
 import datetime
 
 
 def from_str_to_datetime(date: str):
+    "function to convert str DD.MM.YYYY to datetime"
     date = date.split('.')
     date = [int(i) for i in date]
     date1 = datetime.datetime(date[2], date[1], date[0])
@@ -10,6 +11,7 @@ def from_str_to_datetime(date: str):
 
 
 def deadline_score(pass_date: str, deadline_date: str) -> int:
+    """function returns student's mark"""
     pass_date = from_str_to_datetime(pass_date)
     deadline_date = from_str_to_datetime(deadline_date)
     delta = int(str(pass_date - deadline_date)[:9].split()[0])
@@ -30,4 +32,11 @@ def deadline_score(pass_date: str, deadline_date: str) -> int:
 
 
 def late_list(grades: dict, deadline_date: str) -> list[str]:
-    pass
+    """return a list of students who missed deadline"""
+    students = []
+    for i in grades:
+        deadline_date = from_str_to_datetime(deadline_date)
+        pass_date = from_str_to_datetime(grades[i])
+        if int(str(pass_date - deadline_date)[:9].split()[0]) > 0:
+            students.append(i)
+    return students
